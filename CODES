@@ -1,0 +1,75 @@
+#define ldr A0
+#define Rpin 6
+#define Gpin 5
+#define Bpin 3
+
+int Rvalue;
+int Gvalue;
+int Bvalue;
+
+
+void setup() {
+  
+Serial.begin(9600);
+
+
+}
+
+void loop() {
+ int x =analogRead(ldr);
+  x=map(x,0,1023,0,100);
+ 
+ 
+
+if(x<=17) //ışık %17 den az ise mor renk yansın
+{Serial.println("ARDUINO HOCAM ISIGA DUYARLI RGB ");
+  analogWrite(Rpin,100);
+  analogWrite(Bpin,50);
+  analogWrite(Gpin,0);
+  Serial.print("renk MOR "); Serial.println(x);
+  
+ delay(150);
+}
+if(x>17 && x<=34) // ışık %17-34 arasında ise mavi renk yansın
+{Serial.println("ARDUINO HOCAM ISIGA DUYARLI RGB ");
+  analogWrite(Bpin,50);
+  analogWrite(Rpin,0);
+  analogWrite(Gpin,0);
+  Serial.print("renk MAVI");Serial.println(x);
+ delay(50);
+}
+if(x>34 && x<=50) //%34-50 arası yeşil pin
+{Serial.println("ARDUINO HOCAM ISIGA DUYARLI RGB ");
+  analogWrite(Gpin,50);
+  analogWrite(Rpin,0);
+  analogWrite(Bpin,0);
+ Serial.print("renk YESILL");Serial.println(x);
+ delay(150);
+  
+}
+if(x>50 && x<= 67) //sarı renk yansın
+{Serial.println("ARDUINO HOCAM ISIGA DUYARLI RGB ");
+  analogWrite(Rpin,150);
+  analogWrite(Gpin,70);
+  analogWrite(Bpin,0);
+  Serial.print("renk SARI");Serial.println(x);
+ delay(150);
+}
+if(x> 67 && x<= 84) //turuncu renk yansın
+{Serial.println("ARDUINO HOCAM ISIGA DUYARLI RGB ");
+  analogWrite(Rpin,120);
+  analogWrite(Gpin,30);
+  analogWrite(Bpin,0);
+  Serial.print("renk TURUNCU");Serial.println(x);
+ delay(150);
+}
+if(x>84) //kırmızı renk yansın
+{Serial.println("ARDUINO HOCAM ISIGA DUYARLI RGB ");
+  analogWrite(Rpin,150);
+  analogWrite(Gpin,0);
+  analogWrite(Bpin,0);
+  Serial.print("renk KIRMIZI");Serial.println(x);
+ delay(150);
+
+}
+}
